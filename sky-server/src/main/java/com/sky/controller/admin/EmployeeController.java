@@ -11,6 +11,7 @@ import com.sky.result.Result;
 import com.sky.service.EmployeeService;
 import com.sky.utils.JwtUtil;
 import com.sky.vo.EmployeeLoginVO;
+import com.sun.org.apache.bcel.internal.generic.RETURN;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -113,6 +114,31 @@ public class EmployeeController {
     public Result startOrStop(@PathVariable Integer status , Long id){
         log.info("启用禁用员工 {} ,{}" , status , id);
         employeeService.startOrStop(status , id);
+        return Result.success();
+    }
+
+    /**
+     * 根据id查询员工信息
+     * @param id
+     * @return
+     */
+    @GetMapping("/{id}")
+    @ApiOperation("根据id查询员工信息")
+    public  Result<Employee> getById(@PathVariable Long id){
+        log.info("id为 {}" , id);
+        Employee employee =  employeeService.getById(id);
+        return Result.success(employee);
+    }
+
+    /**
+     * 编辑员工信息
+     * @return
+     */
+    @PutMapping
+    @ApiOperation("编辑员工信息")
+    public  Result update(@RequestBody EmployeeDTO employeeDTO){
+        log.info("编辑员工信息 :{}"  , employeeDTO);
+        employeeService.update(employeeDTO);
         return Result.success();
     }
 }
