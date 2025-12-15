@@ -4,5 +4,3 @@
 *.class
 *Test.java
 **/test/
-sky-server/src/main/resources/application.yml
-sky-server/src/main/resources/application-dev.yml
