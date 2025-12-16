@@ -5,4 +5,11 @@
       <excludeFolder url="file://$MODULE_DIR$/src/test" />
     </content>
   </component>
+  <component name="FacetManager">
+    <facet type="web" name="Web">
+      <configuration>
+        <webroots />
+      </configuration>
+    </facet>
+  </component>
 </module>
