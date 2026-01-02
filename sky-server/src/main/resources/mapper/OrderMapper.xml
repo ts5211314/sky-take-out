@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sky.mapper.OrderMapper">
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        insert into orders(
+            number,
+            status,
+            user_id,
+            address_book_id,
+            order_time,
+            checkout_time,
+            pay_method,
+            pay_status,
+            amount,
+            remark,
+            phone,
+            address,
+            consignee,
+            estimated_delivery_time,
+            delivery_status,
+            pack_amount,
+            tableware_number,
+            tableware_status
+        )
+-- 补充的VALUES部分（使用驼峰命名法，对应Java实体类属性）
+        values (
+                   #{number},        -- 对应number（订单编号）
+                   #{status},        -- 对应status（订单状态）
+                   #{userId},             -- 对应user_id（用户ID）
+                   #{addressBookId},      -- 对应address_book_id（地址簿ID）
+                   #{orderTime},          -- 对应order_time（下单时间）
+                   #{checkoutTime},       -- 对应checkout_time（结算时间）
+                   #{payMethod},          -- 对应pay_method（支付方式）
+                   #{payStatus},          -- 对应pay_status（支付状态）
+                   #{amount},             -- 对应amount（订单金额）
+                   #{remark},             -- 对应remark（订单备注）
+                   #{phone},              -- 对应phone（联系电话）
+                   #{address},            -- 对应address（收货地址）
+                   #{consignee},          -- 对应consignee（收货人）
+                   #{estimatedDeliveryTime}, -- 对应estimated_delivery_time（预计送达时间）
+                   #{deliveryStatus},     -- 对应delivery_status（配送状态）
+                   #{packAmount},         -- 对应pack_amount（打包费）
+                   #{tablewareNumber},    -- 对应tableware_number（餐具数量）
+                   #{tablewareStatus}     -- 对应tableware_status（餐具状态）
+               );
+    </insert>
+
+
+</mapper>
