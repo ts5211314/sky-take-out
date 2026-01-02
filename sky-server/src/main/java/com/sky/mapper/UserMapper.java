@@ -13,7 +13,7 @@ public interface UserMapper {
      * @return
      */
     @Select("select * from user where openid = #{openid}")
-    User getOpenid(String openid);
+    User  getOpenid(String openid);
 
     /**
      * 插入数据
@@ -21,4 +21,12 @@ public interface UserMapper {
      */
 
     void insert(User user);
+
+    /**
+     * 根据id查询用户
+     * @param userId
+     * @return
+     */
+    @Select("select * from user where id  = #{id}")
+    User getById(Long userId);
 }
