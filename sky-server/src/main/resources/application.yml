@@ -12,6 +12,19 @@ spring:
       url: jdbc:mysql://${sky.datasource.host}:${sky.datasource.port}/${sky.datasource.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
       username: ${sky.datasource.username}
       password: ${sky.datasource.password}
+       # 连接池核心配置
+      initial-size: 1
+      min-idle: 1
+      max-active: 20
+      max-wait: 60000
+      # 关键：开启并配置空闲连接检测，解决无效连接问题
+      time-between-eviction-runs-millis: 60000  # 每60秒执行一次空闲连接检测
+      min-evictable-idle-time-millis: 1800000   # 连接最小空闲时间30分钟（小于MySQL的8小时，提前预留）
+      max-evictable-idle-time-millis: 3600000   # 连接最大空闲时间1小时
+      validation-query: SELECT 1 FROM DUAL      # 验证连接有效性的SQL（通用）
+      test-while-idle: true                     # 核心：空闲时自动检测连接有效性（开启后可及时剔除无效连接）
+      test-on-borrow: false                     # 获取连接时不检测（提升性能）
+      test-on-return: false                     # 归还连接时不检测（提升性能）
   redis:
     host: ${sky.redis.host}
     port: ${sky.redis.port}
